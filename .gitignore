@@ -1,0 +1,93 @@
+# ---------------------------------------------------------------------------
+# .gitignore
+# ---------------------------------------------------------------------------
+
+# --- OS / file manager cruft ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+
+# Keil MDK-ARM (uVision): user/GUI settings and listings, keep *.uvprojx
+*.uvguix.*
+*.uvoptx
+*.scvd
+JLinkLog.txt
+JLinkSettings.ini
+
+# IAR EWARM: per-user settings, keep *.eww / *.ewp
+settings/
+*.dep
+*.cspy.bat
+*.dbgtrace
+
+# STM32CubeIDE / Eclipse
+.settings/
+.metadata/
+*.launch
+
+# --- Build output ---
+build/
+Build/
+out/
+output/
+Output/
+Debug/
+Release/
+Objects/
+Listings/
+*.o
+*.obj
+*.lo
+*.d
+*.a
+*.lib
+*.elf
+*.axf
+*.out
+*.hex
+*.bin
+*.map
+*.lst
+*.su
+*.i
+*.gcno
+*.gcda
+
+# --- CMake / Make ---
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+Makefile.bak
+compile_commands.json
+
+# --- Logs / temp / caches ---
+*.log
+*.tmp
+*.temp
+.cache/
+
+# --- Python helper scripts ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# --- Node helper scripts ---
+node_modules/
+npm-debug.log*
