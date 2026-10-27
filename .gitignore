@@ -23,6 +23,7 @@ desktop.ini
 *.rej
 
 # Keil MDK-ARM (uVision): user/GUI settings and listings, keep *.uvprojx
+*.uvgui*
 *.uvguix.*
 *.uvoptx
 *.scvd
