@@ -96,11 +96,11 @@ int main(void)
   {
     uint8_t i;
 
-    /* LED1~LED8 逐位点亮，形成流水灯效果（LED 低电平点亮） */
+
     for (i = 0; i < 8; i++)
     {
-      GPIOF->ODR = ~(1U << i);   /* 仅第 i 位为 0，其余位为 1 */
-      delay(24000000);           /* 软件延时，约 1 秒 */
+      GPIOF->ODR = ~(1U << i);
+      delay(24000000);
     }
     /* USER CODE END WHILE */
 
@@ -156,11 +156,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/**
-  * @brief  软件延时函数，采用空循环方式实现（阻塞延时）
-  * @param  i：空循环次数，168MHz 主频下 i = 24000000 约为 1 秒
-  * @retval 无
-  */
+
 void delay(uint32_t i)
 {
   while (i--)

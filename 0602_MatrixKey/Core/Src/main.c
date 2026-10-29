@@ -1,16 +1,5 @@
 /* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : 寄存器级（裸机）PF 口翻转 —— 不使用 HAL
-  ******************************************************************************
-  * @attention
-  *
-  * 说明：本文件不使用 HAL 初始化，因此 MCU 运行在复位默认时钟 HSI 16 MHz
-  *       （而非 SystemClock_Config 里的 168 MHz）。
-  *
-  ******************************************************************************
-  */
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -61,9 +50,9 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  uint16_t i;                        /* 行扫描循环变量 */
-  uint16_t KeyVal = 0;               /* 键值：1~12，对应 3 行 4 列矩阵键盘 */
-  uint8_t  PreLine[3] = {2, 0, 1};   /* 循环变量 i 与键盘行号(0~2)的对应关系 */
+  uint16_t i;
+  uint16_t KeyVal = 0;
+  uint8_t  PreLine[3] = {2, 0, 1};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,13 +83,13 @@ int main(void)
   {
     for (i = 0; i < 3; i++)
     {
-      /* 读取列线 PE0~PE3，不全为高说明有键按下 */
+
       if ((GPIOE->IDR & 0x0F) != 0x0F)
       {
-        HAL_Delay(16);                              /* 软件消抖 16ms */
-        if ((GPIOE->IDR & 0x0F) != 0x0F)            /* 复测仍按下，确认为有效按键 */
+        HAL_Delay(16);
+        if ((GPIOE->IDR & 0x0F) != 0x0F)
         {
-          switch (GPIOE->IDR & 0x0F)                /* 哪一列为低，就是哪一列被按下 */
+          switch (GPIOE->IDR & 0x0F)
           {
             case 0x0E: KeyVal = 4 * PreLine[i] + 1; break;
             case 0x0D: KeyVal = 4 * PreLine[i] + 2; break;
@@ -110,10 +99,10 @@ int main(void)
           }
         }
       }
-      /* 将第 i 行(PE4~PE6)输出低电平，下一次循环读取的就是这一行 */
+
       GPIOE->ODR = ~(1 << (i + 4));
     }
-    /* 键值以 8421BCD 码显示：PF4~PF7 为十位，PF0~PF3 为个位（LED 低电平点亮） */
+
     GPIOF->ODR = ~((KeyVal / 10 << 4) + KeyVal % 10);
     /* USER CODE END WHILE */
 
